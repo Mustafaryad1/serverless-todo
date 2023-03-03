@@ -17,25 +17,25 @@ export class TodosAccess {
   constructor(
     private readonly docClient = new XAWS.DynamoDB.DocumentClient(),
     private readonly todosTable = process.env.TODOS_TABLE,
-    private readonly indexName = process.env.INDEX_NAME
+    private readonly todoIndex = process.env.INDEX_NAME
   ) {}
 
   async getAllTodos(userId: string): Promise<TodoItem[]> {
     logger.info('Get all todos items')
-    logger.info('Index name', this.indexName)
+    logger.info(`Index name ${this.todoIndex}`)
 
     const result = await this.docClient
       .query({
         TableName: this.todosTable,
-        IndexName: this.indexName,
+        IndexName: this.todoIndex,
         KeyConditionExpression: 'userId = :userId',
         ExpressionAttributeValues: {
           ':userId': userId
         }
       })
       .promise()
-
-    const items = result.items
+    
+    const items = result.Items
     return items as TodoItem[]
   }
 
