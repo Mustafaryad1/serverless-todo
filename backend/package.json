@@ -10,6 +10,7 @@
     "http-errors": "^1.7.2",
     "jsonwebtoken": "^8.5.1",
     "middy": "^0.27.0",
+    "nvm": "^0.0.4",
     "source-map-support": "^0.5.11",
     "uuid": "^3.3.2",
     "winston": "^3.2.1"
@@ -23,9 +24,9 @@
     "serverless-iam-roles-per-function": "^3.2.0",
     "serverless-plugin-canary-deployments": "^0.4.7",
     "serverless-plugin-tracing": "^2.0.0",
-    "serverless-reqvalidator-plugin": "^1.0.3",
+    "serverless-reqvalidator-plugin": "^1.0.4",
     "serverless-webpack": "^5.11.0",
-    "ts-loader": "^5.3.3",
+    "ts-loader": "^8.4.0",
     "typescript": ">=3.8.0",
     "webpack": "^4.29.6"
   },
