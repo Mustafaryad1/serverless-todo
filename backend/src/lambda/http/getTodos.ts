@@ -6,9 +6,6 @@ import { cors } from 'middy/middlewares'
 
 import { getTodosForUser as getUserTodos } from '../../businessLogic/todos'
 import { getUserId } from '../utils'
-import { createLogger } from '../../utils/logger'
-
-const logger = createLogger('TodosAccess')
 
 // TODO: Get all TODO items for a current user
 export const handler = middy(
@@ -16,8 +13,6 @@ export const handler = middy(
     // Write your code here
     const userId = getUserId(event)
     const todos = await getUserTodos(userId)
-
-    logger.info(`todos ${todos}`)
 
     return {
       statusCode: 200,
