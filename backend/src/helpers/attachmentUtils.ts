@@ -11,19 +11,22 @@ const urlExpiration = process.env.SIGNED_URL_EXPIRATION
 export class AttachmentUtils {
   constructor(
     private readonly s3 = new XAWS.S3({ signatureVersion: 'v4' }),
-    private readonly bucketName = s3BucketName 
+    private readonly bucketName = s3BucketName
   ) {}
 
   getAttachmentUrl(todoId: string): string {
-    return `https://${this.bucketName}.s3.amazoneaws.com/${todoId}`
+    return `https://${this.bucketName}.s3.amazonaws.com/${todoId}`
   }
 
   getUploadUrl(todoId: string): string {
+    console.log('get upload called')
+    console.log('bucket name', this.bucketName, urlExpiration)
     const url = this.s3.getSignedUrl('putObject', {
       Bucket: this.bucketName,
       Key: todoId,
-      Expires: urlExpiration
+      Expires: parseInt(urlExpiration)
     })
+
     return url as string
   }
 }
